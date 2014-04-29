@@ -8,7 +8,7 @@ Hide or Seek - 127
 
 **/
 
-var BPM = 129;
+var BPM = 116;
 var ML = 60000 / BPM;
 
 var beatCount = 0;

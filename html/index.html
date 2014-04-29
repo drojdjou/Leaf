@@ -73,7 +73,7 @@
 <script type="text/javascript" src="src/objects/Sphere.js"></script>
 <script type="text/javascript" src="src/objects/Pie.js"></script>
 
-<script type="text/javascript" src="lib/Stats.js"></script>
+<!-- <script type="text/javascript" src="lib/Stats.js"></script> -->
 
 </head>
 <body>
@@ -82,12 +82,12 @@
 
 <script type="text/javascript">
 
-var stats = new Stats();
-stats.setMode(0);
-stats.domElement.style.position = 'absolute';
-stats.domElement.style.right = '0px';
-stats.domElement.style.top = '0px';
-document.body.appendChild( stats.domElement );
+// var stats = new Stats();
+// stats.setMode(0);
+// stats.domElement.style.position = 'absolute';
+// stats.domElement.style.right = '0px';
+// stats.domElement.style.top = '0px';
+// document.body.appendChild( stats.domElement );
 
 var canvas = document.querySelector('#canvas');
 canvas.width = window.innerWidth;
@@ -97,11 +97,11 @@ var leaf = new Leaf();
 leaf.setCanvas2d(canvas);
 
 var run = function() {
-    stats.begin();
+    // stats.begin();
     requestAnimationFrame(run);
     if(typeof(process) != 'undefined') process();
     leaf.render();
-    stats.end();
+    // stats.end();
 }
 
 run();
@@ -113,7 +113,12 @@ run();
 
 <script type="text/javascript" src="demo/02_sequencer.js"></script>
 
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+<script>
+if(location.host == 'localhost' || localhost.host.indexOf('192.168') > -1) {
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+}
+</script>
 
 </body>
 </head>
