@@ -1,0 +1,20 @@
+Leaf.Ease = {
+	linear: function(t) { return t; },
+
+	smoothstep: function(t) { return t * t * (3 - 2 * t); },
+
+    quadIn: function (t) {
+        return t * t;
+    },
+
+    quadOut: function (t) {
+        return t * (2 - t);
+    },
+
+	quadInOut: function (t) {
+        if (( t *= 2 ) < 1)
+            return 0.5 * t * t;
+        else
+            return -0.5 * ( --t * ( t - 2 ) - 1 );
+    }
+}

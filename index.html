@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Leaf</title>
+
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style type="text/css">
+
+    body {
+        overflow: hidden;
+    }
+
+    canvas {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    #debug {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 5px;
+        background-color: white;
+        font-family: monospace;
+    }
+
+    #code {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        white-space: pre;
+        font-family: monospace;
+        padding: 1em; 
+        display: block;
+        color: #808080;
+    }
+
+    #runBtn {
+        position: absolute;
+        top: 0px;
+        right: 120px;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 1.0em;
+        font-family: sans-serif;
+        background-color: #fff;
+        color: #000;
+    }
+
+    #runBtn:hover {
+        cursor: pointer;
+        background-color: #f00;
+        color: #fff;
+    }
+
+    *:focus {
+        outline: 0;
+    }
+
+</style>
+
+<script type="text/javascript" src="src/Leaf.js"></script>
+<script type="text/javascript" src="src/Animator.js"></script>
+<script type="text/javascript" src="src/Controller.js"></script>
+<script type="text/javascript" src="src/Prop.js"></script>
+<script type="text/javascript" src="src/Interpolation.js"></script>
+<script type="text/javascript" src="src/Color.js"></script>
+<script type="text/javascript" src="src/Object2d.js"></script>
+<script type="text/javascript" src="src/TimeProvider.js"></script>
+
+<script type="text/javascript" src="src/objects/Rectangle.js"></script>
+<script type="text/javascript" src="src/objects/Sphere.js"></script>
+<script type="text/javascript" src="src/objects/Pie.js"></script>
+
+<script type="text/javascript" src="lib/Stats.js"></script>
+
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<script type="text/javascript">
+
+var stats = new Stats();
+stats.setMode(0);
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.right = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+
+var canvas = document.querySelector('#canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var leaf = new Leaf();
+leaf.setCanvas2d(canvas);
+
+var run = function() {
+    stats.begin();
+    requestAnimationFrame(run);
+    if(typeof(process) != 'undefined') process();
+    leaf.render();
+    stats.end();
+}
+
+run();
+
+
+</script>
+
+<!-- <script type="text/javascript" src="demo/01_demo_mrdiv.js"></script> -->
+
+<script type="text/javascript" src="demo/02_sequencer.js"></script>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+[circle-radius]
+	init: 0
+	to: 100 in: 200ms easein
+	wait: 200ms
+	block:
+		to: 120 in: 2s smoothstep
+		to: 100 in: 2s smoothstep
+	repeat-block: 5
+	wait: 200
+
+[circle]
+	radius: circle-radius
+	color: 1 1 1 0.6
+	position: centerX centerY
+
+[add circle @ 200]
