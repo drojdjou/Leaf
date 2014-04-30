@@ -58,6 +58,33 @@
         outline: 0;
     }
 
+    ul {
+       list-style-type: none;
+       padding: 0;
+       margin: 0;
+       position: absolute;
+       top: 0;
+       left: 0;
+    }
+
+    ul li {
+        float: left;
+        padding: 10px 16px 10px 16px;
+        margin-right: 1px;
+        color: #fff;
+    }
+
+    ul li:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+    ul a, ul a:visited {
+        font-family: monospace;
+        
+        text-decoration: none;
+    }
+
 </style>
 
 <script type="text/javascript" src="src/Leaf.js"></script>
@@ -116,10 +143,20 @@ run();
 
 </script>
 
-<!-- <script type="text/javascript" src="demo/01_demo_mrdiv.js"></script> -->
-<!-- <script type="text/javascript" src="demo/02_sequencer.js"></script> -->
-<!-- <script type="text/javascript" src="demo/03_lines.js"></script> -->
-<script type="text/javascript" src="demo/04_polygon.js"></script>
+<script type="text/javascript">
+
+var demos = [
+    "demo/01_demo_mrdiv.js",
+    "demo/02_sequencer.js",
+    "demo/03_lines.js",
+    "demo/04_polygon.js"
+];
+
+var demoId = parseInt(location.search.substring(1)) || 0;
+
+document.write('<script type="text/javascript" src="' + demos[demoId] + '"></' + 'script>');
+
+</script>
 
 
 <script>
@@ -127,6 +164,13 @@ if(location.host == 'localhost' || localhost.host.indexOf('192.168') > -1) {
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
 }
 </script>
+
+<ul>
+    <a href="?0"><li>1</li></a>
+    <a href="?1"><li>2</li></a>
+    <a href="?2"><li>3</li></a>
+    <a href="?3"><li>4</li></a>
+</ul>
 
 </body>
 </head>

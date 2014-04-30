@@ -1,4 +1,4 @@
-Leaf.Polygon = function(color) {
+Leaf.Polygon = function(numSegments, color) {
 
 	Leaf.Object2d.call(this);
 
@@ -6,9 +6,9 @@ Leaf.Polygon = function(color) {
 
 	this.name = "poly";
 
-	this.p1 = p_(0, 0);
-	this.p2 = p_(0, 0);
-	this.p3 = p_(0, 0);
+	for(var i = 1; i <= numSegments; i++) {
+		this['p' + i] = p_(0, 0);
+	}
 
 	this.color = p_.apply(null, color || [1,1,1,1]);
 
@@ -23,18 +23,11 @@ Leaf.Polygon = function(color) {
 
 		cx.beginPath();
 
-		p = an.p1.get(t);
-		cx.moveTo(p[0], p[1]);
+		for(var i = 1; i <= numSegments; i++) {
+			p = an['p' + i].get(t);
+			(i == 0) ? cx.moveTo(p[0], p[1]) : cx.lineTo(p[0], p[1]);
+		}
 
-		p = an.p2.get(t);
-		cx.lineTo(p[0], p[1]);
-
-		p = an.p3.get(t);
-		cx.lineTo(p[0], p[1]);
-
-		p = an.p4.get(t);
-		cx.lineTo(p[0], p[1]);
-		
 		cx.fill();
 	}
 } 

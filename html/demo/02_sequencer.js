@@ -9,12 +9,13 @@ var BPM = 116;
 var SECBT = 2;
 var ML = 60000 / BPM;
 
-
 var input = document.createElement('input');
 input.setAttribute('type', 'text');
 input.style.position = 'absolute';
-input.style.top = '10px';
+input.style.top = '40px';
 input.style.left = '10px';
+input.style.fontSize = '20px';
+input.style.width = '60px';
 document.body.appendChild(input);
 
 input.value = BPM;
