@@ -49,6 +49,32 @@ var Leaf = function(provider) {
 		};
 	}
 
+	var addController = function(time, source, parent) {
+		var o;
+
+		if(source._controller) {
+			o = source._controller;
+		} else {
+	 		o = new Leaf.Controller(source);
+		}
+
+		var nc = source.getChildren().length;
+
+		for(var i = 0; i < nc; i++) {
+			var co = source.getChildren()[i];
+			addController(time, co, o);
+		}
+
+		o.setInTime(time);
+		if(!parent) o.onEnd(onChildEnded);
+
+		if(parent) { 
+			parent.add(o); 
+		} else {
+			queue.push(o);
+		}
+	}
+
 	this.add = function(inTime, source) {
 
 		var c, t = that.provider.getTime(true) + inTime;
@@ -56,24 +82,10 @@ var Leaf = function(provider) {
 		if(source instanceof Array) {
 			var sl = source.length, c;
 			for(var i = 0; i < sl; i++) {
-
-				var o;
-
-				if(source[i]._controller && !source[i]._controller._active) o = source[i]._controller;
-				else o = new Leaf.Controller(source[i]);
-				o.setInTime(t);
-
-				o.onEnd(onChildEnded);
-				queue.push(o);
+				addController(t, source[i], null);
 			}
 		} else {
-		 	var o;
-
-		 	if(source._controller && !source._controller._active) o = source._controller;
-		 	else o = new Leaf.Controller(source);
-		 	o.setInTime(t);
-			o.onEnd(onChildEnded);
-			queue.push(o);
+		 	addController(t, source, null);
 		}
 
 		// queue.sort(timeSort); 

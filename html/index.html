@@ -149,12 +149,19 @@ var demos = [
     "demo/01_demo_mrdiv.js",
     "demo/02_sequencer.js",
     "demo/03_lines.js",
-    "demo/04_polygon.js"
+    "demo/04_polygon.js",
+    "demo/05_parenting.js"
 ];
 
 var demoId = parseInt(location.search.substring(1)) || 0;
 
 document.write('<script type="text/javascript" src="' + demos[demoId] + '"></' + 'script>');
+
+document.write('<ul>');
+for(var i = 0; i < demos.length; i++) {
+    document.write('<a href="?' + i + '"><li>' + (i+1) + '</li></a>');
+}
+document.write('</ul>');
 
 </script>
 
@@ -164,13 +171,6 @@ if(location.host == 'localhost' || localhost.host.indexOf('192.168') > -1) {
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
 }
 </script>
-
-<ul>
-    <a href="?0"><li>1</li></a>
-    <a href="?1"><li>2</li></a>
-    <a href="?2"><li>3</li></a>
-    <a href="?3"><li>4</li></a>
-</ul>
 
 </body>
 </head>

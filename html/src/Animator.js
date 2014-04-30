@@ -37,6 +37,9 @@ Leaf.Animator = function(steps) {
 			if(t >= inTime && t < outTime) {
 
 				var nt = (t - inTime) / (outTime - inTime);
+				
+				if(nt < 0) nt = 0;
+				if(nt > 1) nt = 1;
 
 				if(s1.ease) nt = s1.ease(nt);
 				else if(s2.ease) nt = s2.ease(nt);

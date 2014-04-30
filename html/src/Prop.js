@@ -22,6 +22,19 @@ Leaf.Prop = function(v) {
 		return this;
 	}
 
+	this.by = function() {
+		var v = (arguments[0] instanceof Array) ? arguments[0] : Array.prototype.slice.call(arguments);
+		var p = steps[steps.length-1].value;
+
+		for(var i = 0; i < v.length; i++) {
+			v[i] += p[i];
+		}
+
+		steps.push({ value: v });
+		numSteps = steps.length - 1;
+		return this;
+	}
+
 
 	this.wait = function(t) {
 		total += t;
