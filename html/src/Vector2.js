@@ -1,61 +1,60 @@
-V2 = function(x, y) {
-	this.x = x;
-	this.y = y;
+V2 = {};
+
+V2.add = function(a, b, result) {
+	result = result || a;
+	result[0] = a[0] + b[0];
+	result[1] = a[1] + b[1];
+	return result;
 }
 
-V2.v = function(x, y) {
-	return new V2(x, y);
+V2.sub = function(a, b, result) {
+	result = result || a;
+	result[0] = a[0] - b[0];
+	result[1] = a[1] - b[1];
+	return result;
 }
 
-V2.prototype.add = function(a, b) {
-	this.x = a.x + b.x;
-	this.y = a.y + b.y;
+V2.mul = function(a, m, result) {
+	result = result || a;
+	result[0] = a[0] * m;
+	result[1] = a[1] * m;
+	return result;
 }
 
-V2.prototype.sub = function(a, b) {
-	this.x = a.x - b.x;
-	this.y = a.y - b.y;
+V2.neg = function(a, result) {
+	result = result || a;
+	result[0] = a[0] * -1;
+	result[1] = a[1] * -1;
+	return result;
 }
 
-V2.prototype.mul = function(a, s) {
-	this.x = a.x * s;
-	this.y = a.y * s;
-}
+V2.norm = function(a, result) {
+	result = result || a;
 
-V2.prototype.neg = function(a) {
-	this.x = -a.x;
-	this.y = -a.y;
-}
-
-V2.prototype.norm = function(a) {
-	var m = a.mag();
+	var m = V2.mag(a);
     if(m == 0) return a;
-	this.x = a.x / m;
-	this.y = a.y / m;
+	result[0] = a[0] / m;
+	result[1] = a[1] / m;
+
+	return result;
 }
 
-V2.prototype.magSq = function() {
-	return this.x * this.x + this.y * this.y;
+V2.magSq = function(a) {
+	return a[0] * a[0] + a[1] * a[1];
 }
 
-V2.prototype.mag = function() {
-	return Math.sqrt(this.x * this.x + this.y * this.y);
+V2.mag = function(a) {
+	return Math.sqrt(a[0] * a[0] + a[1] * a[1]);
 }
 
 V2.dot = function(a, b) {
-    return a.x * b.x + a.y * b.y;
+    return a[0] * b[0] + a[1] * b[1];
 }
 
 V2.distance = function(a, b) {
-    return Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+    return Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
 }
 
 V2.distanceSqrt = function(a, b) {
-    return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
-}
-
-V2.prototype.lerp = function(a, b, t) {
-	this.x = a.x + (b.x - a.x) * t;
-	this.y = a.y + (b.y - a.y) * t;
-	return this;
+    return (b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]);
 }

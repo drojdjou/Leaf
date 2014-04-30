@@ -25,7 +25,7 @@ var Leaf = function(provider) {
 	}
 
 	var zSort = function(a, b) {
-		return a.zIndex - b.zIndex;
+		return a.source.zIndex - b.source.zIndex;
 	}
 
 	var onChildEnded = function(o) {
@@ -78,14 +78,6 @@ var Leaf = function(provider) {
 
 		// queue.sort(timeSort); 
 		queueSize = queue.length;
-	}
-
-	this.centerX = function() {
-		return window.innerWidth * 0.5;
-	}
-
-	this.centerY = function() {
-		return window.innerHeight * 0.5;
 	}
 
 	this.render = function() {

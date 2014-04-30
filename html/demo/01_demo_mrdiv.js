@@ -1,10 +1,9 @@
-var setInCenter = function(o) {
-    o.position.init(leaf.centerX(), leaf.centerY());
-}
+
+leaf.provider.biDirectional = true;
 
 var wrapCircle = new Leaf.Sphere(Leaf.Color.grey(1));
 wrapCircle.name = "wrapCircle";
-setInCenter(wrapCircle);
+Leaf.Layout.setCenter(wrapCircle);
 wrapCircle.scale
 	.to(0,0).in(300, Leaf.Ease.quadIn)
 	.wait(1600)
@@ -13,7 +12,7 @@ wrapCircle.scale
 
 var dashRing = new Leaf.Sphere(Leaf.Color.grey(1));
 dashRing.name = "dashRing";
-setInCenter(dashRing);
+Leaf.Layout.setCenter(dashRing);
 dashRing.stroke = true;
 dashRing.dash = 64;
 
@@ -37,7 +36,7 @@ dashRing.radius
 
 var ring = new Leaf.Sphere(Leaf.Color.grey(1));
 ring.name = "ring";
-setInCenter(ring);
+Leaf.Layout.setCenter(ring);
 ring.stroke = true;
 
 ring.radius
@@ -56,7 +55,7 @@ ring.strokeSize
 
 var ring2 = new Leaf.Sphere(Leaf.Color.grey(1));
 ring2.name = "ring2";
-setInCenter(ring2);
+Leaf.Layout.setCenter(ring2);
 ring2.stroke = true;
 
 ring2.radius
@@ -81,7 +80,7 @@ var starFade = 600;
 for(var i = 0; i < 5; i++) {
 	var s = new Leaf.Pie(Leaf.Color.grey(1));
 	s.name = "pie" + i;
-	setInCenter(s);
+	Leaf.Layout.setCenter(s);
 
 	s.thickness
 		.init(1)
@@ -141,9 +140,7 @@ document.addEventListener('mousemove', function(e) {
 	leaf.provider.timeScale = 0.1 + mx * 2;
 });
 
-// wrapCircle.onEnd = startAnimation;
-
-wrapCircle.onEnd = function() {
+wrapCircle.onEnd = function(self) {
 	leaf.provider.reset();
 };
 

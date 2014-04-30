@@ -8,7 +8,7 @@ Leaf.Pie = function(color) {
 	this.radius = p_(100);
 	this.thickness = p_(20);
 	this.startAngle = p_(0);
-	this.endAngle = p_(Math.PI * 1.5);
+	this.endAngle = p_(Math.PI * 2);
 	this.color = p_.apply(null, color || [1,1,1,1]);
 
 	this.draw = function(t, rn, an) {

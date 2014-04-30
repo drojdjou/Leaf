@@ -9,6 +9,9 @@ Leaf.TimeProvider = function() {
 		currentTimeScaled = 0,
 		accPauseTime = 0;
 
+	// Millisecond per beat
+	var mpb = 0, beatCount = 0, beatCallback;
+
 	this.timeScale = 1;
 	this.biDirectional = false;
 	this.paused = false;
@@ -17,7 +20,11 @@ Leaf.TimeProvider = function() {
 	// Below that assume animation (tab) was inactive
 	var MAX_FRAME_LENGHT = 1000/4;
 
-	
+	this.setBPM = function(bpm, callback) {
+		mpb = 60000 / bpm;
+		beatCallback = callback;
+		beatCount = 0;
+	}
 
 	this.reset = function() {
 		currentTime = NOW();
@@ -38,6 +45,16 @@ Leaf.TimeProvider = function() {
 
 		currentTime = NOW();
 		if(!ip) currentTimeScaled += deltaTime * that.timeScale;
+
+		if(mpb && !registration) {
+			var b = currentTimeScaled / mpb;
+			var bi = parseInt(b | 0);
+
+			if(bi > beatCount) {
+				beatCallback(beatCount, (b - bi) * -1);
+				beatCount = bi;
+			}
+		}
 
 		return currentTimeScaled;
 	}
