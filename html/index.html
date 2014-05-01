@@ -102,6 +102,7 @@
 <script type="text/javascript" src="src/objects/Sphere.js"></script>
 <script type="text/javascript" src="src/objects/Pie.js"></script>
 <script type="text/javascript" src="src/objects/Line.js"></script>
+<script type="text/javascript" src="src/objects/Curve.js"></script>
 <script type="text/javascript" src="src/objects/Polygon.js"></script>
 
 <script type="text/javascript" src="lib/Stats.js"></script>
@@ -113,7 +114,7 @@
 
 <script type="text/javascript">
 
-var stats, SHOW_STATS = false;
+var stats, SHOW_STATS = true;
 
 if(SHOW_STATS) {
     stats = new Stats();
@@ -150,7 +151,8 @@ var demos = [
     "demo/02_sequencer.js",
     "demo/03_lines.js",
     "demo/04_polygon.js",
-    "demo/05_parenting.js"
+    "demo/05_parenting.js",
+    "demo/06_curve.js"
 ];
 
 var demoId = parseInt(location.search.substring(1)) || 0;

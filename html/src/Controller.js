@@ -22,11 +22,7 @@ Leaf.Controller = function(source) {
 		namedAnimators[n] = a;
 	}
 
-	var children = [], numChildren = 0, finishedChildren = 0, ended = false;
-
-	var onChildEnded = function(o) {
-		finishedChildren++;
-	}
+	var children = [], numChildren = 0;
 
 	this.add = function() {
 		var al = arguments.length;
@@ -36,10 +32,7 @@ Leaf.Controller = function(source) {
 
 			// If child already added - move on
 			if(children.indexOf(c) > -1) break;
-
-			c.onEnd(onChildEnded);
 			children.push(c);
-
 			duration = Math.max(duration, c.getDuration());
 		}
 
@@ -51,8 +44,6 @@ Leaf.Controller = function(source) {
 	}
 
 	this.setInTime = function(inTime) {
-		ended = false;
-		finishedChildren = 0;
 		that.inTime = inTime;
 		that.outTime = that.inTime + duration;
 	}
@@ -76,9 +67,8 @@ Leaf.Controller = function(source) {
 
 		_render(time, renderers);
 
-		if(t >= duration && finishedChildren == numChildren && !ended) {
+		if(t >= duration){
 			if(onEndFunc) setTimeout(onEndFunc, 0, that);
-			ended = true;
 		}
 	}
 

@@ -14,6 +14,14 @@ Leaf.Layout = new (function() {
 	    o.position.init(that.centerX(), that.centerY());
 	}
 
+	this.wp = function(p) {
+		return p / 100 * window.innerWidth;
+	}
+
+	this.hp = function(p) {
+		return p / 100 * window.innerHeight;
+	}
+
 	this.widthPercent = function(p) {
 		return p / 100 * window.innerWidth;
 	}

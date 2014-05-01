@@ -16,5 +16,17 @@ Leaf.Ease = {
             return 0.5 * t * t;
         else
             return -0.5 * ( --t * ( t - 2 ) - 1 );
+    },
+
+    sineIn: function ( t ) {
+        return 1 - Math.cos( t * Math.PI / 2 );
+    },
+
+    sineOut: function ( t ) {
+        return Math.sin( t * Math.PI / 2 );
+    },
+
+    sineInOut: function ( t ) {
+        return 0.5 * ( 1 - Math.cos( Math.PI * t ) );
     }
 }
