@@ -1,7 +1,7 @@
 
-var startAnimation = function(svg) {
+var startAnimation = function(svgSource) {
 
-	var svgParser = new Leaf.SVGParser(svg);
+	var svgParser = new Leaf.SVG(svgSource);
 	var paths = svgParser.extractPaths();
 
 	paths.reverse();	
@@ -42,20 +42,22 @@ var startAnimation = function(svg) {
 
 
 	for(var i = 0; i < paths.length; i++) {
-		var path = new Leaf.Path([1,1,1,1], paths[i]);
+
+		var coords = paths[i];
+		coords.mul(1 / svgParser.width).mul(window.innerWidth * 0.9);
+
+		var path = new Leaf.Path([1,1,1,1], coords);
 		path.position.init(100, 100);
 		path.width = pathWidth;
 		path.progress = pathProgress;
 		leaf.add(i * 500, path);
 	}
 
-
-
 	leaf.provider.timeScale = 2;
 	
 }
 
-Leaf.Loader.loadSVG('test/sample-google-2.svg', startAnimation);
+Leaf.Loader.loadSVG('test/sample-google.svg', startAnimation);
 
 
 

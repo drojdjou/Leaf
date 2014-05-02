@@ -50,6 +50,19 @@ Leaf.PathCoord = function() {
 	this.segments = function() {
 		return commands;
 	}
+
+	this.mul = function(m) {
+		for(var i = 0; i < commands.length; i++) {
+			var c = commands[i];
+			if(c.x) c.x *= m;
+			if(c.y) c.y *= m;
+			if(c.x1) c.x1 *= m;
+			if(c.y1) c.y1 *= m;
+			if(c.x2) c.x2 *= m;
+			if(c.y2) c.y2 *= m;
+		}
+		return this;
+	}
 }
 
 
