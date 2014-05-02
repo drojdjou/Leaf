@@ -17,7 +17,7 @@ Leaf.Curve = function(color) {
 
 	this.color = p_.apply(null, color || [1,1,1,1]);
 
-
+	// http://stackoverflow.com/questions/878862/drawing-part-of-a-bezier-curve-by-reusing-a-basic-bezier-curve-function
 	var u0, u1, qxa, qxb, qxc, qxd, qya, qyb, qyc, qyd, xa, xb, xc, xd, ya, yb, yc, yd;
 
 	var interpolate = function(cx, t0, t1, x1, y1, bx1, by1, bx2, by2, x2, y2) {

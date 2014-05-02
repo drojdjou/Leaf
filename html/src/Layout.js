@@ -14,6 +14,10 @@ Leaf.Layout = new (function() {
 	    o.position.init(that.centerX(), that.centerY());
 	}
 
+	this.setAtPercent= function(o, x, y) {
+	    o.position.init(that.wp(x), that.hp(y));
+	}
+
 	this.wp = function(p) {
 		return p / 100 * window.innerWidth;
 	}

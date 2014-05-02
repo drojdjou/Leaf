@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Load and access SVG</title>
+
+<meta name="viewport" content="width=640, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+<style type="text/css">
+
+    body {
+        overflow: hidden;
+        background: #000;
+    }
+
+    canvas {
+        background-color: #fff;
+    }
+
+</style>
+
+<script type="text/javascript" src="../src/Leaf.js"></script>
+<script type="text/javascript" src="../src/Loader.js"></script>
+
+</head>
+<body>
+
+<canvas width="580" height="400"></canvas>
+
+<script type="text/javascript">
+
+Leaf.Loader.loadText('sample.svg', function(svg) {
+
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.strokeStyle = 'rgb(0,0,0)';
+
+    var svgElem = document.createElement('svg');
+    svgElem.innerHTML = svg;
+    
+    var path = svgElem.querySelector('path').pathSegList;
+
+    
+    ctx.beginPath();
+    ctx.moveTo(262.5, 175);
+    ctx.lineTo(362.5, 275);
+    ctx.stroke();
+    
+    
+    ctx.beginPath();
+    var x = 0, y = 0;
+
+    // http://stackoverflow.com/questions/8053487/scripting-path-data-in-svg-reading-and-modifying
+    for (var i = 0, len = path.numberOfItems; i < len; i++) {
+        var p = path.getItem(i);
+
+        
+        
+
+        switch(p.pathSegTypeAsLetter) {
+            case "m": 
+                x += p.x;
+                y += p.y;
+                ctx.moveTo(x, y);
+                break;
+            case "c": 
+
+                var x1 = x + p.x1;
+                var y1 = y + p.y1;
+                var x2 = x + p.x2;
+                var y2 = y + p.y2;
+
+                x += p.x;
+                y += p.y;
+
+                ctx.bezierCurveTo(x1, y1, x2, y2, x, y);
+                break;
+        }
+
+        
+    }
+
+    ctx.stroke();
+
+    document.body.appendChild(svgElem);
+});
+
+
+</script>
+
+
+<script>
+if(location.host == 'localhost' || localhost.host.indexOf('192.168') > -1) {
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+}
+</script>
+
+</body>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
