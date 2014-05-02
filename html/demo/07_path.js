@@ -6,17 +6,19 @@ var startAnimation = function(svgSource) {
 
 	paths.reverse();	
 
+	var maxWidth = (window.innerWidth < 1024) ? 5 : 10;
+
 	var pathWidth = 
 		p_(1)
 
 		.beginBlock()
-		.to(10)
+		.to(maxWidth)
 		.in(250)
 		.to(1)
 		.in(250)
 		.repeatBlock(2)
 
-		.to(10)
+		.to(maxWidth)
 		.in(1000)
 		.wait(10000)
 		.to(1)
