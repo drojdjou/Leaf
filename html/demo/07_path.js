@@ -47,6 +47,7 @@ var startAnimation = function(svgSource) {
 		coords.mul(1 / svgParser.width).mul(window.innerWidth);
 
 		var path = new Leaf.Path([1,1,1,1], coords);
+		path.position.init(0, Leaf.Layout.hp(20));
 		path.width = pathWidth;
 		path.progress = pathProgress;
 		leaf.add(i * 500, path);
