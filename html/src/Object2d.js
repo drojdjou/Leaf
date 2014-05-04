@@ -27,8 +27,8 @@ Leaf.Object2d = function() {
 
 Leaf.Object2d.prototype.enablePhysics = function(x, y) {
 	this.force = p_(0, 0);
-	this.gravity = 0.2;
-	this.friction = 0.97;
+	this.gravity = 0.0;
+	this.friction = 1.0;
 	this.velocity = [0, 0];
 	// Integrated position
 	this.position = [x, y];
@@ -47,6 +47,8 @@ Leaf.Object2d.prototype.setupTransform = function(time, renderer, animators) {
 	cx.translate(p[0], p[1]);
 	cx.rotate(r);
 	cx.scale(s[0], s[1]);
+
+	this.currentPosition = p;
 } 
 
 Leaf.Object2d.prototype.setupTransformPhysics = function(time, renderer, animators) {

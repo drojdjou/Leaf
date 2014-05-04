@@ -22,10 +22,13 @@ var addParticle = function(x, y) {
 
 	p.enablePhysics(x, y);
 
+	p.gravity = 0.2;
+	p.friction = 0.98;
+
 	p.force
 		.init(0, 0)
 		.to(Math.random() * 2 - 1, -(Math.random() + 1))
-		.in(60)
+		.in(100)
 		.to(0, 0)
 		.in(80)
 	;
