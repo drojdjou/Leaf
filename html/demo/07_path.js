@@ -11,12 +11,12 @@ var startAnimation = function(svgSource) {
 	var pathWidth = 
 		p_(1)
 
-		.beginBlock()
-		.to(maxWidth)
-		.in(250)
-		.to(1)
-		.in(250)
-		.repeatBlock(2)
+		// .beginBlock()
+		// .to(maxWidth)
+		// .in(250)
+		// .to(1)
+		// .in(250)
+		// .repeatBlock(2)
 
 		.to(maxWidth)
 		.in(1000)
@@ -28,12 +28,12 @@ var startAnimation = function(svgSource) {
 	var pathProgress =
 		p_(1, 1)
 
-		.to(0.75, 1)
-		.in(100)
-		.to(0, 0.25)
-		.in(100 * 8)
-		.to(0, 0)
-		.in(100)
+		// .to(0.75, 1)
+		// .in(100)
+		// .to(0, 0.25)
+		// .in(100 * 8)
+		// .to(0, 0)
+		// .in(100)
 
 		.to(0.0, 1.0)
 		.in(1000)
@@ -55,7 +55,7 @@ var startAnimation = function(svgSource) {
 		leaf.add(i * 500, path);
 	}
 
-	leaf.provider.timeScale = 8;
+	leaf.provider.timeScale = 3;
 	
 }
 
