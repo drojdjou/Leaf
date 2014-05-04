@@ -52,7 +52,9 @@ Leaf.Controller = function(source) {
 
 		var t = time - that.inTime;
 
-		source.setupTransform(t, renderers, namedAnimators);	
+		if(source.physicsEnabled) source.setupTransformPhysics(t, renderers, namedAnimators);	
+		else source.setupTransform(t, renderers, namedAnimators);	
+
 		source.render(t, renderers, namedAnimators);
 
 		for(var i = 0; i < numChildren; i++) {
