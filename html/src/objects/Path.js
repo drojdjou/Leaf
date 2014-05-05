@@ -31,7 +31,7 @@ Leaf.PathCoord = function() {
 	}
 
 	/**
-	 *	Instead of closing the path, let's just draw a line back to the original point - this way we can animate it
+	 *	Instead of closing the path, let's just draw a line back to the first point - this way we can animate it
 	 */
 	this.close = function() {
 		var b = commands[0];
