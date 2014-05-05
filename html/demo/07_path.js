@@ -9,37 +9,16 @@ var startAnimation = function(svgSource) {
 	var maxWidth = (window.innerWidth < 1024) ? 2 : 10;
 
 	var pathWidth = 
-		p_(1)
-
-		// .beginBlock()
-		// .to(maxWidth)
-		// .in(250)
-		// .to(1)
-		// .in(250)
-		// .repeatBlock(2)
-
-		.to(maxWidth)
-		.in(1000)
-		.wait(50000)
-		.to(1)
-		.in(1000)
+		p_(maxWidth)
 	;
 
 	var pathProgress =
-		p_(1, 1)
-
-		// .to(0.75, 1)
-		// .in(100)
-		// .to(0, 0.25)
-		// .in(100 * 8)
-		// .to(0, 0)
-		// .in(100)
-
+		p_(0, 0)
 		.to(0.0, 1.0)
-		.in(1000)
+		.in(400)
 		.wait(50000)
 		.to(1.0, 1.0)
-		.in(1000)
+		.in(400)
 	;
 
 
@@ -49,13 +28,13 @@ var startAnimation = function(svgSource) {
 		coords.mul(1 / svgParser.width).mul(window.innerWidth);
 
 		var path = new Leaf.Path([1,1,1,1], coords);
-		path.position.init(0, Leaf.Layout.hp(20));
+		path.position.init(0, Leaf.Layout.hp(5));
 		path.width = pathWidth;
 		path.progress = pathProgress;
 		leaf.add(i * 500, path);
 	}
 
-	leaf.provider.timeScale = 3;
+	leaf.provider.timeScale = 2;
 	
 }
 

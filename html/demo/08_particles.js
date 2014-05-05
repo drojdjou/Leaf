@@ -28,9 +28,9 @@ var addParticle = function(x, y) {
 	p.force
 		.init(0, 0)
 		.to(Math.random() * 2 - 1, -(Math.random() + 1))
-		.in(100)
+		.in(10)
 		.to(0, 0)
-		.in(80)
+		.in(160)
 	;
 
 	

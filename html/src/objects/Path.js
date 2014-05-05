@@ -47,6 +47,10 @@ Leaf.PathCoord = function() {
 		return commands[i];
 	}
 
+	this.getLastSegment = function() {
+		return commands[commands.length-1];
+	}
+
 	this.segments = function() {
 		return commands;
 	}

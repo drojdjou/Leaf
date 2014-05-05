@@ -61,6 +61,24 @@ Leaf.SVG = function(source) {
 		                y = p.y;
 		                coord.curveTo(p.x1, p.y1, p.x2, p.y2, p.x, p.y);
 		                break;
+		            case "s":
+		            	var l = coord.getLastSegment();
+		            	var x1 = l.x - (l.x1 - l.x);
+		            	var y1 = l.y - (l.y1 - l.y);
+		            	var x2 = x + p.x2;
+		                var y2 = y + p.y2;
+		                x += p.x;
+		                y += p.y;
+		            	coord.curveTo(x1, y1, x2, y2, x, y);
+		            	break;
+		            case "S":
+		            	var l = coord.getLastSegment();
+		            	var x1 = l.x - (l.x1 - l.x);
+		            	var y1 = l.y - (l.y1 - l.y);
+		                x += p.x;
+		                y += p.y;
+		            	coord.curveTo(p.x1, p.y1, p.x2, p.y2, p.x, p.y);
+		            	break;
 		        }
 		    }
 
