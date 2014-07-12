@@ -105,7 +105,7 @@ var demos = [
     { url: "demo/12_notation.js",           title: "?"  }
 ];
 
-var demoId = (parseInt(location.search.substring(1)) || 0) - 1;
+var demoId = (parseInt(location.search.substring(1)) - 1) || 0;
 
 document.write('<script type="text/javascript" src="' + demos[demoId].url + '"></' + 'script>');
 
