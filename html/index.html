@@ -4,115 +4,22 @@
 <title>Leaf</title>
 
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
-<style type="text/css">
 
-    body {
-        overflow: hidden;
-        background-color: #000;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-    }
+<link rel="stylesheet" type="text/css" href="css/main.css">
 
-    canvas {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: 100;
-    }
+</head>
+<body>
 
-    #debug {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        padding: 5px;
-        background-color: white;
-        font-family: monospace;
-    }
 
-    #code {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        white-space: pre;
-        font-family: monospace;
-        padding: 1em; 
-        display: block;
-        color: #808080;
-    }
+<canvas id="canvas"></canvas>
 
-    #runBtn {
-        position: absolute;
-        top: 0px;
-        right: 120px;
-        padding: 10px;
-        text-transform: uppercase;
-        font-size: 1.0em;
-        font-family: sans-serif;
-        background-color: #fff;
-        color: #000;
-    }
+<ul class="menu"></ul>
 
-    #runBtn:hover {
-        cursor: pointer;
-        background-color: #f00;
-        color: #fff;
-    }
-
-    *:focus {
-        outline: 0;
-    }
-
-    ul {
-       list-style-type: none;
-       padding: 0;
-       margin: 0;
-       position: absolute;
-       top: 0;
-       left: 0;
-       z-index: 150;
-    }
-
-    ul li {
-        float: left;
-        padding: 10px 10px 10px 10px;
-        margin-right: 1px;
-        color: #fff;
-    }
-
-    ul li:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    ul a, ul a:visited {
-        font-family: monospace;
-        
-        text-decoration: none;
-    }
-
-    .abs-elem {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    video {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: 10;
-    }
-
-    .stats {
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        z-index: 200;
-    }
-
-</style>
-
+<div class="menu-btn">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 
 <script type="text/javascript" src="lib/Stats.js"></script>
 <script type="text/javascript" src="lib/framework.js"></script>
@@ -140,12 +47,6 @@
 <script type="text/javascript" src="src/objects/Polygon.js"></script>
 <script type="text/javascript" src="src/objects/Image.js"></script>
 <script type="text/javascript" src="src/objects/Element.js"></script>
-
-</head>
-<body>
-
-
-<canvas id="canvas"></canvas>
 
 <script type="text/javascript">
 
@@ -190,29 +91,39 @@ run();
 <script type="text/javascript">
 
 var demos = [
-    "demo/01_demo_mrdiv.js",
-    "demo/02_sequencer.js",
-    "demo/03_lines.js",
-    "demo/04_polygon.js",
-    "demo/05_parenting.js",
-    "demo/06_curve.js",
-    "demo/07_path.js",
-    "demo/08_particles.js",
-    "demo/09_image.js",
-    "demo/10_adv_interpolation.js",
-    "demo/11_html_element.js",
-    "demo/12_notation.js"
+    { url: "demo/01_demo_mrdiv.js",         title: "MrDiv" },
+    { url: "demo/02_sequencer.js",          title: "Sequencer" },
+    { url: "demo/03_lines.js",              title: "Preloader"  },
+    { url: "demo/04_polygon.js",            title: "Polygon"  },
+    { url: "demo/05_parenting.js",          title: "Running dude"  },
+    { url: "demo/06_curve.js",              title: "Curve"  },
+    { url: "demo/07_path.js",               title: "Path"  },
+    { url: "demo/08_particles.js",          title: "Particles"  },
+    { url: "demo/09_image.js",              title: "Image Masking"  },
+    { url: "demo/10_adv_interpolation.js",  title: "Interpolation"  },
+    { url: "demo/11_html_element.js",       title: "HTML Element"  },
+    { url: "demo/12_notation.js",           title: "?"  }
 ];
 
-var demoId = parseInt(location.search.substring(1)) || 0;
+var demoId = (parseInt(location.search.substring(1)) || 0) - 1;
 
-document.write('<script type="text/javascript" src="' + demos[demoId] + '"></' + 'script>');
+document.write('<script type="text/javascript" src="' + demos[demoId].url + '"></' + 'script>');
 
-document.write('<ul>');
-for(var i = 0; i < demos.length; i++) {
-    document.write('<a href="?' + i + '"><li>' + (i+1) + '</li></a>');
+
+var menu = EXT.select(".menu"), list = "";
+
+for(var i = 1; i <= demos.length; i++) {
+    list += '<li><a href="?' + i + '">' + demos[i-1].title + '</a></li>';
 }
-document.write('</ul>');
+
+menu.innerHTML = list;
+
+var menuVisible = false;
+
+EXT.select(".menu-btn").ext.on('click', function() {
+    menuVisible = !menuVisible;
+    menu.ext.css('display', (menuVisible) ? 'block' : 'none');
+});
 
 </script>
 

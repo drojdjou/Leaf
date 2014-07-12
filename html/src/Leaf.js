@@ -5,9 +5,9 @@ var Leaf = function(provider) {
 	
 	this.provider = provider || new Leaf.TimeProvider();
 
-	// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-    window.requestAnimationFrame = (function() {
-        return  window.webkitRequestAnimationFrame ||
+	window.requestAnimationFrame = (function() {
+        return window.requestAnimationFrame ||
+        	window.webkitRequestAnimationFrame ||
             window.mozRequestAnimationFrame ||
             window.oRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
