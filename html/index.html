@@ -8,12 +8,17 @@
 
     body {
         overflow: hidden;
+        background-color: #000;
+        position: fixed;
+        width: 100%;
+        height: 100%;
     }
 
     canvas {
         position: absolute;
         top: 0px;
         left: 0px;
+        z-index: 100;
     }
 
     #debug {
@@ -65,6 +70,7 @@
        position: absolute;
        top: 0;
        left: 0;
+       z-index: 150;
     }
 
     ul li {
@@ -85,7 +91,31 @@
         text-decoration: none;
     }
 
+    .abs-elem {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    video {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 10;
+    }
+
+    .stats {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        z-index: 200;
+    }
+
 </style>
+
+
+<script type="text/javascript" src="lib/Stats.js"></script>
+<script type="text/javascript" src="lib/framework.js"></script>
 
 <script type="text/javascript" src="src/Leaf.js"></script>
 <script type="text/javascript" src="src/Animator.js"></script>
@@ -108,11 +138,12 @@
 <script type="text/javascript" src="src/objects/Curve.js"></script>
 <script type="text/javascript" src="src/objects/Path.js"></script>
 <script type="text/javascript" src="src/objects/Polygon.js"></script>
-
-<script type="text/javascript" src="lib/Stats.js"></script>
+<script type="text/javascript" src="src/objects/Image.js"></script>
+<script type="text/javascript" src="src/objects/Element.js"></script>
 
 </head>
 <body>
+
 
 <canvas id="canvas"></canvas>
 
@@ -123,9 +154,7 @@ var stats, SHOW_STATS = true;
 if(SHOW_STATS) {
     stats = new Stats();
     stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.right = '0px';
-    stats.domElement.style.bottom = '0px';
+    stats.domElement.setAttribute('class', 'stats');
     document.body.appendChild( stats.domElement );
 }
 
@@ -134,8 +163,14 @@ document.addEventListener('touchmove', function(e) {
 });
 
 var canvas = document.querySelector('#canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+var dpr = window.devicePixelRatio || 1;
+
+canvas.width = window.innerWidth * dpr;
+canvas.height = window.innerHeight * dpr;
+
+canvas.style.width = (window.innerWidth * dpr) + 'px';
+canvas.style.height = (window.innerHeight * dpr) + 'px';
 
 var leaf = new Leaf();
 leaf.setCanvas2d(canvas);
@@ -162,7 +197,11 @@ var demos = [
     "demo/05_parenting.js",
     "demo/06_curve.js",
     "demo/07_path.js",
-    "demo/08_particles.js"
+    "demo/08_particles.js",
+    "demo/09_image.js",
+    "demo/10_adv_interpolation.js",
+    "demo/11_html_element.js",
+    "demo/12_notation.js"
 ];
 
 var demoId = parseInt(location.search.substring(1)) || 0;
@@ -179,7 +218,7 @@ document.write('</ul>');
 
 
 <script>
-if(location.host == 'localhost' || localhost.host.indexOf('192.168') > -1) {
+if(location.host == 'localhost' || location.host.indexOf('192.168') > -1) {
     document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
 }
 </script>

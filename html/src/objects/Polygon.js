@@ -5,6 +5,7 @@ Leaf.Polygon = function(numSegments, color) {
 	var that = this;
 
 	this.name = "poly";
+	this.mask = false;
 
 	for(var i = 1; i <= numSegments; i++) {
 		this['p' + i] = p_(0, 0);

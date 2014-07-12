@@ -1,0 +1,8 @@
+{
+   "name": "leaf",
+   "description": "Leaf 2d/3d Animation",
+   "version": "0.0.1",
+   "dependencies": {
+      "uglify-js":"*"
+   }
+}

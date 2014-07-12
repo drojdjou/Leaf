@@ -46,11 +46,21 @@ Leaf.Controller = function(source) {
 	this.setInTime = function(inTime) {
 		that.inTime = inTime;
 		that.outTime = that.inTime + duration;
+		that.accPauseTime = 0;
+		that.paused = false;
+		lastTime = 0;
 	}
 
-	var _render = function(time, renderers) {
+	var lastTime = 0;
 
-		var t = time - that.inTime;
+	this.render = function(time, renderers) {
+		if(that.paused) {
+			if(!lastTime) lastTime = time;
+			that.accPauseTime += time - lastTime;
+			lastTime = time;
+		}
+
+		var t = time - (that.inTime + that.accPauseTime);
 
 		if(source.physicsEnabled) source.setupTransformPhysics(t, renderers, namedAnimators);	
 		else source.setupTransform(t, renderers, namedAnimators);	
@@ -62,12 +72,6 @@ Leaf.Controller = function(source) {
 		}
 
 		source.clearTransform(t, renderers, namedAnimators);	
-	}
-
-	this.render = function(time, renderers) {
-		var t = time - that.inTime;
-
-		_render(time, renderers);
 
 		if(t >= duration){
 			if(onEndFunc) setTimeout(onEndFunc, 0, that);

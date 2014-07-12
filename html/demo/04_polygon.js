@@ -24,7 +24,7 @@ var p2 =
 	.to(er, -er).in(ML, Leaf.Ease.smoothstep)
 	.to(er, r).in(ML, Leaf.Ease.smoothstep)
 	.to(r, er).in(ML, Leaf.Ease.smoothstep)
-	.to(r, r).in(ML, Leaf.Ease.quadIn)
+	.to(r, r).in(ML, Leaf.Ease.smoothstep)
 ;
 
 var p3 =
@@ -32,7 +32,7 @@ var p3 =
 	.wait(ML*0.66)
 	.to(er, er).in(ML, Leaf.Ease.smoothstep)
 	.to(-r, er).in(ML, Leaf.Ease.smoothstep)
-	.to(-r, r).in(ML, Leaf.Ease.quadIn)
+	.to(-r, r).in(ML, Leaf.Ease.smoothstep)
 ;
 
 var p4 = 
@@ -40,7 +40,7 @@ var p4 =
     .wait(ML)
     .to(-er, er).in(ML, Leaf.Ease.smoothstep)
     .to(-er, -r).in(ML, Leaf.Ease.smoothstep)
-    .to(-r, -r).in(ML, Leaf.Ease.quadIn)
+    .to(-r, -r).in(ML, Leaf.Ease.smoothstep)
 ;
 
 var pos = p_(Leaf.Layout.centerX(), Leaf.Layout.centerY()).wait(ML * 4);

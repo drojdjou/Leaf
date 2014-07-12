@@ -92,13 +92,30 @@ var Leaf = function(provider) {
 		queueSize = queue.length;
 	}
 
+	this.remove = function(source) {
+		var c = source._controller;
+
+		var qi = queue.indexOf(c)
+		var ai = activeChildren.indexOf(c);
+
+		if(ai > -1) activeChildren.splice(ai, 1);
+		if(qi > -1) queue.splice(qi, 1);
+
+		return qi > -1;
+	}
+
 	this.render = function() {
 		var time = that.provider.getTime();
 
 		if(renderers._2d) {
 			var cx = renderers._2d.context;
+			cx.setTransform(1,0,0,1,0,0);
+			cx.globalCompositeOperation = 'source-over';
 			cx.globalAlpha = 1;
-			cx.fillStyle = 'rgb(0, 0, 0)';
+
+			cx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+			cx.fillStyle = 'rgba(0, 0, 0, 0)';
 			cx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 		}
 

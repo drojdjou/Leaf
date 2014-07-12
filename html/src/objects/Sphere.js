@@ -8,6 +8,7 @@ Leaf.Sphere = function(color) {
 	this.stroke = false;
 	this.dash = false;
 	this.strokeSize = p_(1);
+	this.mask = false;
 
 	this.name = "sphere";
 	this.radius = p_(100);

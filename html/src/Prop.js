@@ -24,6 +24,7 @@ Leaf.Prop = function(v) {
 
 	this.by = function() {
 		var v = (arguments[0] instanceof Array) ? arguments[0] : Array.prototype.slice.call(arguments);
+
 		var p = steps[steps.length-1].value;
 
 		for(var i = 0; i < v.length; i++) {
@@ -35,6 +36,12 @@ Leaf.Prop = function(v) {
 		return this;
 	}
 
+	this.amp = function() {
+		var v = (arguments[0] instanceof Array) ? arguments[0] : Array.prototype.slice.call(arguments);
+		var s = steps[steps.length - 1];
+		s.amplitude = v;
+		return this;
+	}
 
 	this.wait = function(t) {
 		total += t;

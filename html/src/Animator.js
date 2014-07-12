@@ -1,6 +1,7 @@
 Leaf.Animator = function(steps) {
 
 	var that = this;
+	var MAX_FRAME_DURATION = 100; // i.e. 10FPS
 
 	var i, j;
 	var numSteps = steps.length - 1;
@@ -19,7 +20,14 @@ Leaf.Animator = function(steps) {
 		return a + (b - a) * t;
 	};
 
+	var ct = 0;
+
+	var lastT = 0;
+
 	this.get = function(t) {
+
+		delta = t - lastT;
+		if(delta > MAX_FRAME_DURATION) delta = 0;
 
 		if(numSteps == 0) return steps[0].value;
 
@@ -41,20 +49,24 @@ Leaf.Animator = function(steps) {
 				if(nt < 0) nt = 0;
 				if(nt > 1) nt = 1;
 
-				if(s1.ease) nt = s1.ease(nt);
-				else if(s2.ease) nt = s2.ease(nt);
+				if(s2.ease) nt = s2.ease(nt);
+				else if(s1.ease) nt = s1.ease(nt);
 
 				if(multi) {
 					for(j = 0; j < resultSize; j++) {
 						result[j] = lerpFunc(s1.value[j], s2.value[j], nt);
+						if(s2.amplitude) result[j] += s2.amplitude[j] * nt;
 					}
 				} else {
 					result = lerpFunc(s1.value, s2.value, nt);
+					if(s2.amplitude) result += s2.amplitude * nt;
 				}
 
-				if(s2.notify && i > lastIndex) {
-					s2.notify(this, s2.notifArgs);
-					s2.notified = true;
+				// console.log(t + delta, outTime);
+
+				if(s2.notify && t >= outTime - delta) {
+					console.log("notify >", t + delta, outTime);
+					s2.notify();
 				}
 
 				lastIndex = i;
@@ -62,6 +74,8 @@ Leaf.Animator = function(steps) {
 				break;
 			}
 		}
+
+		lastT = t;
 
 		if(!found) return steps[numSteps].value;
 		else return result;
